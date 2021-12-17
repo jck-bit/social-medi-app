@@ -1,32 +1,48 @@
-import { MoreVert } from '@material-ui/icons'
-import React from 'react'
+import { MoreVert,ThumbDown } from '@material-ui/icons'
+
+import React,{useState} from 'react'
 import './Posts.css'
-const Posts = () => {
+import { Users } from '../../DummyData'
+
+
+const Posts = ({post}) => { 
+    const [like, setlike] = useState(post.like)
+    const likeHandler= () =>{
+        setlike(like +1 )
+    }
+
+    const [disliked, setdisliked] = useState(post.dislike)
+    const dislikeHandler = () =>{
+        setdisliked(disliked +1)
+    }
     return (
         <div className="post">
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postLeft">
-                        <img  className="postProfileImg"src="/assets/hello.jpeg" alt="" />
-                        <span className="postUsername"> Ni&n</span>
-                        <span className="postDate">5 mins ago</span>
+                        <img  className="postProfileImg"src={Users.filter(u=>u.id ===post.userId)[0].profilePicture} alt="" />
+                        <span className="postUsername">{Users.filter(u=>u.id ===post.userId)[0].username}</span>
+                        <span className="postDate">{post.date}</span>
                     </div>
                     <div className="postRight">
                         <MoreVert className="myn"/>
                     </div>
                 </div>
                 <div className="postCenter">
-                  <div className="postText">Hey ! This is my firs post</div>
-                    <img className="postImg"src="/assets/hey.jpg" alt="first post" />
+                  <div className="postText">{post.description}</div>
+                    <img className="postImg"src={post.photo} alt="first post" />
                      </div>
                        <div className="postBottom">
                        <div className="postBottomLeft">
-                       <img className="likeIcon" src="/assets/like.png" alt="" />
-                     <img  className="likeIcon" src="/assets/heart.png" alt="" />
-                    <span className="postlikeCounter">Liked by juren and 45 others</span>
+                      
+                       <img className="likeIcon" src="/assets/like.png" alt="" onClick ={likeHandler}/>                   
+                        <span className="postlikeCounter">{like}</span>
+                       
+                        <ThumbDown htmlColor="tomato"  className="likeIcon" onClick={dislikeHandler}/>
+                        <span >{disliked}</span>
                   </div>
                     <div className="postBottomRight">
-                        <span className="postCommentText">9 comments</span>
+                        <span className="postCommentText">{post.comment}</span>
                     </div>
                     
                 </div>
