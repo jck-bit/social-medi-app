@@ -10,7 +10,7 @@ const Rightbar = () => {
                 <div className="birthadyContainer">
                     <img className="birthdayImg" src="/assets/itachi.jpg" alt="" />
                     <span className="birthdayText">
-                        <b>Juren</b> and <b>three other friemds</b> have a birthday today
+                        <b>Juren</b> and <b>three other friends</b> have a birthday today
                         </span>
                 </div>
                 <img className="rightbarAd" src="/assets/download.jpeg" alt="" />
